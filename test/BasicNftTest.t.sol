@@ -12,6 +12,9 @@ contract BasicNftTest is Test {
     BasicNft public basicNft;
     DeployBasicNft public deployer;
 
+    string public constant PUG_URI =
+        "ipfs://bafybeig37ioir76s7mg5oobetncojcm3c3hxasyd4rvid4jqhy4gkaheg4/?filename=0-PUG.json";
+
     function setUp() public {
         deployer = new DeployBasicNft();
         basicNft = deployer.run();
@@ -26,5 +29,12 @@ contract BasicNftTest is Test {
             keccak256(abi.encodePacked(basicNft.symbol())) ==
                 keccak256(abi.encodePacked((NFT_SYMBOL)))
         );
+    }
+
+    function testCanMintAndHaveABalance() public {
+        vm.prank(USER);
+        basicNft.mintNft(PUG_URI);
+
+        assert(basicNft.balanceOf(USER) == 1);
     }
 }
