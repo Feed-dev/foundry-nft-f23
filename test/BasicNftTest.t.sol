@@ -23,4 +23,6 @@ contract BasicNftTest is Test {
                 keccak256(abi.encodePacked(actualName))
         );
     }
+
+    function testCanMintAndHaveABalance() public {}
 }
