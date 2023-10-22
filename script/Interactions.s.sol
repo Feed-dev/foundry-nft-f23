@@ -13,4 +13,6 @@ contract MintBasicNft is Script {
         );
         mintNftOnContract(mostRecentlyDeployed);
     }
+
+    function mintNftOnContract(address contractAddress) public {}
 }
